@@ -15,7 +15,7 @@ function package.new(): Package
     local obj: Package = {
         _event = _event,
         Loaded = {},
-	    IsLoaded = false,
+        IsLoaded = false,
         Finished = _event.Event
     }
     setmetatable(obj, {__index = package, __tostring = function()
@@ -43,15 +43,22 @@ function package:Fetch(name: string, value: any): any?
 end
 
 function package:Load(dir: Instance | Array<ModuleScript>)
-    if self.IsLoaded then
-        error("Package was already loaded.", 2)
-    end
     local modules = typeof(dir) == "Instance" and dir:GetChildren() or dir
     for _,v in pairs(modules) do
 		self.Loaded[v.Name] = require(v)
     end
     self.IsLoaded = true
 	self._event:Fire(self.loaded)
+end
+
+function package:Unload(modules: string | Array<string>)
+    if type(modules) == "string" then
+        self.Loaded[modules] = nil
+    elseif type(modules) == "table" then
+        for _,v in pairs(modules) do
+            self.Loaded[v] = nil
+        end
+    end
 end
 
 return package
