@@ -1,7 +1,7 @@
 # Handl
 Handl (/ˈhandl/) is a module designed for Luau that streamlines the process of interfacing with many modules at once all under a simple object.
 
-This module was designed for Luau but can be adapted for vanilla Lua very easily.
+Despite the module being designed for Luau, you can very easily adapt it for vanilla Lua.
 
 ## Package.new()
 ### Usage
