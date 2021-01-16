@@ -13,7 +13,7 @@ local MyPackage = Package.new()
 #### Returns:
   - a `Package` object
 ** **
-## Package:Load(modules: Instance | Array\<ModuleScript\>)
+## Package:Load(modules: ModuleScript | Array\<ModuleScript\>)
 ### Usage
 ```lua
 local Package = require(path.to.Handl)
