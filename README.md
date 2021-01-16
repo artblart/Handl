@@ -59,3 +59,15 @@ MyPackage:Fetch("ModuleA", "field")
 ```
 #### Returns:
   - `any`
+** **
+## Package:Unload(modules: string | Array<string>)
+### Usage
+```lua
+local Package = require(path.to.Handl)
+
+local MyPackage = Package.new()
+MyPackage:Load({path.to.ModuleA, path.to.ModuleB})
+MyPackage:Unload({"ModuleA", "ModuleB"})
+```
+#### Returns:
+  - `nil`
