@@ -60,7 +60,7 @@ MyPackage:Fetch("ModuleA", "field")
 #### Returns:
   - `any`
 ** **
-## Package:Unload(modules: string | Array<string>)
+## Package:Unload(modules: string | Array\<string\>)
 ### Usage
 ```lua
 local Package = require(path.to.Handl)
