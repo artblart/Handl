@@ -42,8 +42,8 @@ function package:Fetch(name: string, value: any): any?
     return value and self.Loaded[name][value] or self.Loaded[name]
 end
 
-function package:Load(dir: Instance | Array<ModuleScript>)
-    local modules = typeof(dir) == "Instance" and dir:GetChildren() or dir
+function package:Load(dir: ModuleScript | Array<ModuleScript>)
+    local modules = typeof(dir) == "Instance" and {dir} or dir --gross but i dont want to rewrite this function
     for _,v in pairs(modules) do
 		self.Loaded[v.Name] = require(v)
     end
