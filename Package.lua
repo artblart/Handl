@@ -30,12 +30,12 @@ function package.new(): Package
     return obj
 end
 
-function package:Run(name: string, func: string, ...)
-    return self.Loaded[name][func](...)
-end
-
-function package:Call(name: string, ...)
-    return self.Loaded[name](...)
+function package:Run(name: string, func: string?, ...)
+    local mode = type(self:Fetch(name))
+    if mode == "table" then
+        return self.Loaded[name][func](...)
+    end
+    return self.Loaded[name](func, ...)
 end
 
 function package:Fetch(name: string, value: any): any?
@@ -43,12 +43,13 @@ function package:Fetch(name: string, value: any): any?
 end
 
 function package:Load(dir: ModuleScript | Array<ModuleScript>)
+    self.IsLoaded = false
     local modules = typeof(dir) == "Instance" and {dir} or dir --gross but i dont want to rewrite this function
     for _,v in pairs(modules) do
 		self.Loaded[v.Name] = require(v)
     end
     self.IsLoaded = true
-	self._event:Fire(self.loaded)
+	self._event:Fire(self.Loaded)
 end
 
 function package:Unload(modules: string | Array<string>)
