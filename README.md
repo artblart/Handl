@@ -24,7 +24,7 @@ MyPackage:Load({path.to.ModuleA, path.to.ModuleB})
 #### Returns:
   - `nil`
 ** **
-## Package:Run(name: string, func: string, any...)
+## Package:Run(name: string, func: string?, any...)
 ### Usage
 ```lua
 local Package = require(path.to.Handl)
@@ -32,18 +32,6 @@ local Package = require(path.to.Handl)
 local MyPackage = Package.new()
 MyPackage:Load({path.to.ModuleA, path.to.ModuleB})
 MyPackage:Run("ModuleB", "TestFunction", "arg1", "arg2")
-```
-#### Returns:
-  - `any?...`
-** **
-## Package:Call(name: string, any...)
-### Usage
-```lua
-local Package = require(path.to.Handl)
-
-local MyPackage = Package.new()
-MyPackage:Load({path.to.ModuleA, path.to.ModuleB})
-MyPackage:Call("ModuleA", "arg1", "arg2") --ModuleA must return a function for this to work.
 ```
 #### Returns:
   - `any?...`
