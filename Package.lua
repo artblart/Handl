@@ -49,14 +49,14 @@ function package:Load(dir: ModuleScript | Array<ModuleScript>)
 		self.Loaded[v.Name] = require(v)
     end
     self.IsLoaded = true
-	self._event:Fire(self.Loaded)
+    self._event:Fire()
 end
 
 function package:Unload(modules: string | Array<string>)
     if type(modules) == "string" then
         self.Loaded[modules] = nil
     elseif type(modules) == "table" then
-        for _,v in pairs(modules) do
+        for _,v in pairs(modules :: {string}) do
             self.Loaded[v] = nil
         end
     end
